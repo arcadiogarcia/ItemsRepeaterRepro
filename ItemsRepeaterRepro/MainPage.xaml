@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="ItemsRepeaterRepro.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ItemsRepeaterRepro"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tkControls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="EntryTemplate">
+            <Rectangle
+                Width="60"
+                Height="80"
+                Margin="10"
+                Fill="Green" />
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="navBarRoot">
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Margin="10" Click="Button_Click">Open</Button>
+            <Button Margin="10" Click="Button2_Click">Add</Button>
+            <TextBlock x:Name="statusText" Margin="10" />
+        </StackPanel>
+        <Grid x:Name="navBarPanel" Background="Red">
+            <ScrollViewer
+                HorizontalScrollBarVisibility="Auto"
+                HorizontalScrollMode="Auto"
+                VerticalScrollBarVisibility="Disabled"
+                VerticalScrollMode="Disabled">
+                <controls:ItemsRepeater
+                    x:Name="itemsRepeater"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    ItemTemplate="{StaticResource EntryTemplate}"
+                    ItemsSource="{x:Bind Elements}"
+                    SizeChanged="itemsRepeater_SizeChanged">
+                    <controls:ItemsRepeater.Layout>
+                        <controls:UniformGridLayout Orientation="Horizontal" />
+                    </controls:ItemsRepeater.Layout>
+                </controls:ItemsRepeater>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
